@@ -28,16 +28,13 @@ class KonsultasiController extends Controller
 
     public function result(Request $request)
     {
-        $hasilKonsultasi = $request->input('item-1') + $request->input('item-2') +
-            $request->input('item-3') + $request->input('item-4') +
-            $request->input('item-5') + $request->input('item-6') +
-            $request->input('item-7') + $request->input('item-8') +
-            $request->input('item-9') + $request->input('item-10') +
-            $request->input('item-11') + $request->input('item-12') +
-            $request->input('item-13') + $request->input('item-14') +
-            $request->input('item-15') + $request->input('item-16') +
-            $request->input('item-17') + $request->input('item-18') +
-            $request->input('item-19') + $request->input('item-20');
+        $itemInputs = $request->only([
+            'item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6', 'item-7', 'item-8',
+            'item-9', 'item-10', 'item-11', 'item-12', 'item-13', 'item-14', 'item-15', 'item-16',
+            'item-17', 'item-18', 'item-19', 'item-20'
+        ]);
+
+        $hasilKonsultasi = array_sum($itemInputs);
 
         $hasilAkhir = DB::table('hasil_konsultasi')
             ->where('hasil_konsultasi.nilai_rentan_awal', '<=', $hasilKonsultasi)
@@ -49,6 +46,7 @@ class KonsultasiController extends Controller
         $rekomendasi = DB::table('rekomendasi')
             ->where('rekomendasi.id_hasil', '=', $idHasil)
             ->first();
+
         $data = [
             'title' => 'Hasil Diagnosa',
             'hasilAkhir' => $hasilAkhir,
