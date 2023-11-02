@@ -53,16 +53,16 @@
                                             aria-label="Toggle navigation">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ Request::is('index') ? route('index') : '' }}#tentang-kami" class=""
+                                        <a href="{{ Request::is('index') ?: route('index') }}#tentang-kami" class=""
                                             aria-label="Toggle navigation">Tentang Kami</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ Request::is('index') ? route('index') : '' }}#petunjuk" class=""
+                                        <a href="{{ Request::is('index') ?: route('index') }}#petunjuk" class=""
                                             aria-label="Toggle navigation">Petunjuk
                                             Penggunaan</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ Request::is('index') ? route('index') : '' }}#profile" class=""
+                                        <a href="{{ Request::is('index') ?: route('index') }}#profile" class=""
                                             aria-label="Toggle navigation">Profile
                                             Pengembang</a>
                                     </li>
